@@ -1,0 +1,17 @@
+<div #focusMe class="d-flex flex-row " >
+    <div class="p-2">
+        <img [src]=getSantizeUrl(dataItem.image.link) class="img"/>
+    </div>
+
+    <div class="p-2">
+        <h5  class="bg-secondary text-light" [innerHTML]="dataItem.name"></h5>
+
+        <div class="row ">
+            <div *ngFor="let group of dataItem.groups" [innerHTML]="group.name" class="text-sm-left align-self-center"></div>
+            <button *ngIf="isNotSearching" class="btn bg-light text-secondary ">+ Add Group</button>
+        </div>
+
+    </div>
+
+
+ </div>

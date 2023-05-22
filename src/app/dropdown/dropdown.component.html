@@ -1,0 +1,21 @@
+<div class="dropdown h-100 " class="text-white">
+	<a class="btn btn-white dropdown-toggle mb-2  h-100 text-white" role="button " (click)="initFocus()"
+		id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="text-truncate">Go to projects</span>
+	</a>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<input type="text" class="form-control rounded" [(ngModel)]="searchValue"  (ngModelChange)="searchNotifier.next(searchValue)"
+		aria-label="Search" aria-describedby="search-addon" placeholder="Search">
+		<span class="input-group-text border-0" id="search-addon">
+			<i class="fas fa-search"></i>
+		</span>
+      
+		<a *ngFor="let item of data; let i=index" class="dropdown-item pointer text-contain" (keydown)="moveCell($event)" tabindex="{{i}}"  #focusMe
+			[ngClass]="{'alternateBackground': i%2 == 0 }" (click)="selectValue(item)" name="focusMe">
+			<app-dropdwn-item [dataItem] = 'item' [isNotSearching] = 'isNotSearching'>"{{item}}"</app-dropdwn-item>
+		</a>
+		
+        
+		<div *ngIf="data.length <=0" class="text-center text-muted mt-1 text-white">No projects found</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+<div>
+    <div  class="center">    
+    <h2><img [src]=getSantizeUrl(project.image.link) class="img"/> {{project.name}} </h2>
+    <a href="{{project.url}}" > {{project.url}}</a>
+    </div>
+
+    <div  class="center">
+        <table class="table-primary  center">
+            <tr class="th">
+                <th>Name</th>
+                <th>Url</th>
+            </tr>
+            <tr *ngFor="let group of project.groups; let i=index">
+                <td>{{group.name}}</td>
+                <td> <a href="{{group.url}}" > {{group.url}}</a></td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
