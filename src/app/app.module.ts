@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DropdownDirective } from './dropdown.directive';
 import { FocusDirective } from './focus.directive';
 import { GroupTableComponent } from './group-table/group-table.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 
 
@@ -29,7 +30,7 @@ import { GroupTableComponent } from './group-table/group-table.component';
     FormsModule,
     RouterModule.forRoot([
       {path: 'app-group-table', component: GroupTableComponent},
-      {path: 'approot', component: AppComponent}
+      {path: 'app-errorpage', component: ErrorpageComponent}
 
     ],
     { onSameUrlNavigation: 'reload' }),
