@@ -8,10 +8,58 @@
 
         <div class="row ">
             <div *ngFor="let group of dataItem.groups" [innerHTML]="group.name" class="text-sm-left align-self-center"></div>
-            <button *ngIf="isNotSearching" class="btn bg-light text-secondary ">+ Add Group</button>
+            <button *ngIf="isNotSearching" class="btn bg-light text-secondary " (click)="open(content)">+ Add Group</button>
         </div>
 
     </div>
 
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" 
+                id="modal-basic-title">
+                Add Group to {{dataItem.name}} project
+            </h4>
+            <button type="button" class="close btn bg-light"
+                    aria-label="Close" (click)=
+                    "modal.dismiss('Cross click')">
+      
+                <span aria-hidden="true">
+                    ×
+                </span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
 
+                    <label for="idNum">
+                        Group ID
+                    </label>
+                    <input type="text" class="form-control" id="idNum" onlyNumber required [(ngModel)]="newGroup.id" name="idNum" #idNum="ngModel" (keypress)="numberOnly($event)">   
+
+                    <label for="groupName">
+                        Group Name
+                    </label>
+                    <input type="text" class="form-control" id="groupName"   required [(ngModel)]="newGroup.name" name="groupName" #groupName="ngModel">   
+
+                             
+                    <label for="url">
+                        Url
+                    </label>
+                    <input type="text" class="form-control" id="url"   required [(ngModel)]="newGroup.url" name="url" #url="ngModel">         
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"  disabled="{{url.errors?.['required'] || idNum.errors?.['required']  ||groupName.errors?.['required'] }}"
+                        class="btn btn-outline-dark" 
+                        (click)="save(modal)">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+    </ng-template>
+
+    
  </div>

@@ -3,6 +3,7 @@ import { HttpClient ,HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,19 @@ export class DataService {
     return this.http.get<any>(fullUrl).pipe(
       catchError(this.handleError)
     );
+  }
+
+  addGroup(projectId : number,group : { id: number; name: string; url: string; })
+  {
+
+  const headers= new HttpHeaders()
+  .set('content-type', 'application/json');
+    const fullUrl = this.url+this.port+this.configUrl;
+    console.log('Adding group ')  ;
+    return this.http.put<any>(fullUrl+'/'+ projectId,group ,  { 'headers': headers }).pipe(
+      catchError(this.handleError)
+    );
+
   }
 
   private handleError(error: HttpErrorResponse) {
