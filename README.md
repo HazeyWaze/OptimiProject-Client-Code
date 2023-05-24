@@ -11,6 +11,7 @@ Boostrap 'npm install bootstrap'
 jquery
 poppers
 rxjs
+Run 'npm intall' or 'npm install --force'
 
 To run the server run the comand "`ng serve`" or ' ng server --open'
 
@@ -20,5 +21,6 @@ This server runs on port 4200
 
 Navigate to `http://localhost:4200/`
 
-
-If there are issues running the server try deleting node_modules and packacke-lock.json and run npm install
+Due to changing angular versions in the middle of developement I have notice an issue running this project
+If there are issues running the server try deleting node_modules and packacke-lock.json and run npm install or just run npm install --force
+Sorry about this inconveience
