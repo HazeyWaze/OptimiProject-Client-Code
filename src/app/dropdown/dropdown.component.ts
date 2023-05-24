@@ -111,6 +111,17 @@ ngOnDestroy() {
   this.searchNotifier.complete();
 }
 
+onGroupAdded(eventData: {id: number; name: string; image: { link: string; }; groups: { id: number; name: string; url: string; }[]; url: string; }) {
+  this.data.forEach(proj => {
+    if(proj.id == eventData.id)
+    {
+      proj.groups = eventData.groups;
+      this.selectValue(proj);
+    }
+  });
+
+}
+
 }
 
 

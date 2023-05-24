@@ -1,4 +1,4 @@
-import { Component,OnInit , Input, ViewChild} from '@angular/core';
+import { Component,OnInit , Input, Output, EventEmitter} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser'
 import {NgbModal, ModalDismissReasons}   from '@ng-bootstrap/ng-bootstrap';
 import {DataService} from '../data.service';
@@ -14,6 +14,7 @@ export class DropdwnItemComponent {
   @Input() isNotSearching = true;
   closeResult = '';
   newGroup: { id: number; name: string; url: string; }= { id: undefined, name: '', url:''}; 
+  @Output () groupCreated = new EventEmitter<{id: number; name: string; image: { link: string; }; groups: { id: number; name: string; url: string; }[]; url: string; }>;
 
   constructor( private sanitizer: DomSanitizer, private modalService: NgbModal, private dataService: DataService){
 
@@ -45,7 +46,10 @@ export class DropdwnItemComponent {
   save(modal)
   {
     let resultId = 0;
-    this.dataService.addGroup(this.dataItem.id,this.newGroup).subscribe(data => resultId = data.id); ;
+    this.dataService.addGroup(this.dataItem.id,this.newGroup).subscribe(); 
+    this.dataItem.groups.push(this.newGroup);
+    this.groupCreated.emit(this.dataItem);
+    this.newGroup = { id: undefined, name: '', url:''}; 
     modal.close('Save click')
   }
   
